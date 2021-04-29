@@ -23,8 +23,10 @@
     </div>
 
     <div class="table-responsive">
+<!--      <table class="table mb-0" *ngIf="products">-->
       <table class="table mb-0"
-             *ngIf="products">
+             *ngIf="products$ | async as products">
+<!--        'as products' creates a local template reference named 'products' which can be used inside the template-->
         <thead>
           <tr>
             <th>Product</th>
@@ -35,6 +37,7 @@
           </tr>
         </thead>
         <tbody *ngFor="let product of products">
+<!--        local reference products being used above-->
           <tr>
             <td>{{ product.productName }}</td>
             <td>{{ product.productCode }}</td>
