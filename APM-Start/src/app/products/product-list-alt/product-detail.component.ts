@@ -19,6 +19,12 @@ export class ProductDetailComponent {
       return EMPTY;
     })
   );
+  productSuppliers$ = this.productService.selectedProductsSupplier$.pipe(
+    catchError(err => {
+      this.errMessageSubject.next(err);
+      return EMPTY;
+    })
+  );
 
   constructor(private productService: ProductService) {
   }

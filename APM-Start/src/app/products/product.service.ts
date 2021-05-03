@@ -41,6 +41,10 @@ export class ProductService {
     shareReplay(1)
   );
 
+  selectedProductsSupplier$ = combineLatest([this.selectedProduct$, this.supplierService.suppliers$]).pipe(
+    map(([selectedProduct, suppliers]) => suppliers.filter(supplier => selectedProduct.supplierIds.includes(supplier.id)))
+  );
+
   addProductSubject = new Subject<Product>();
   addProduct$ = this.addProductSubject.asObservable();
   productsWithAdd$ = merge(this.productsWithCategory$, this.addProduct$).pipe(
